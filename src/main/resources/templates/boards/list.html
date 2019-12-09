@@ -25,7 +25,7 @@
                 <tbody>
                     <tr class="odd gradeX" th:each="board:${result.content}">
                         <td>[[${board.bno}]]</td>
-                        <td><a href="${board.bno}" class="boardLink">[[${board.title}]]</a></td>
+                        <td><a th:href="${board.bno}" class="boardLink">[[${board.title}]]</a></td>
                         <td>[[${board.writer}]]</td>
                         <td class="center">[[${#dates.format(board.regdate, 'yyyy-MM-dd')}]]</td>
                     </tr>
@@ -109,6 +109,17 @@
                 formObj.find("[name='type']").val(typeStr);
                 formObj.find("[name='keyword']").val(keywordStr);
                 formObj.find("[name='page']").val("1");
+                formObj.submit();
+            });
+            $(".boardLink").click(function(e){
+
+                e.preventDefault();
+
+                var boardNo = $(this).attr("href");
+
+                formObj.attr("action", [[@{'/boards/view'}]]);
+                formObj.append("<input type='hidden' name='bno' value='"+boardNo+"'>");
+
                 formObj.submit();
             });
         });
