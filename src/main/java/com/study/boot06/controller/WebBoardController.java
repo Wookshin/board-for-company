@@ -1,6 +1,7 @@
 package com.study.boot06.controller;
 
 import com.study.boot06.domain.WebBoard;
+import com.study.boot06.persistence.CustomCrudRepository;
 import com.study.boot06.persistence.WebBoardRepository;
 import com.study.boot06.vo.PageMaker;
 import com.study.boot06.vo.PageVO;
@@ -24,14 +25,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class WebBoardController {
 
     @Autowired
-    private WebBoardRepository repo;
+    //private WebBoardRepository repo;
+    private CustomCrudRepository repo;
 
     @GetMapping("/list")
     public void list(@ModelAttribute("pageVO") PageVO vo, Model model) {
 
         Pageable page = vo.makePageable(0, "bno");
 
-        Page<WebBoard> result = repo.findAll(repo.makePredicate(vo.getType(), vo.getKeyword()), page);
+        //Page<WebBoard> result = repo.findAll(repo.makePredicate(vo.getType(), vo.getKeyword()), page);
+        Page<Object[]> result = repo.getCustomPage(vo.getType(),vo.getKeyword(),page);
 
 
         log.info("" + page);
@@ -39,7 +42,7 @@ public class WebBoardController {
 
         log.info("TOTAL PAGE NUMBER: " + result.getTotalPages());
 
-        model.addAttribute("result", new PageMaker(result));
+        model.addAttribute("result", new PageMaker<>(result));
     }
 
     @GetMapping("/register")
