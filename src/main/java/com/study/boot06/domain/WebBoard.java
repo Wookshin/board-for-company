@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class WebBoard {
 
     private String writer;
 
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @CreationTimestamp

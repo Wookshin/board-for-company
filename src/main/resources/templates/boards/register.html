@@ -4,27 +4,26 @@
 
 <div layout:fragment="content">
 
-    <div class="panel-heading">Register Page</div>
+    <div class="panel-heading">게시물 등록</div>
     <div class="panel-body">
 
         <form th:action="@{register}" method="post">
 
             <div class="form-group">
-                <label>Title</label> <input class="form-control" name="title" th:value="${vo.title}"/>
-                <p class="help-block">Title text here.</p>
+                <label>제목</label> <input class="form-control" name="title" th:value="${vo.title}"/>
             </div>
 
             <div class="form-group">
-                <label>Content</label>
-                <textarea class="form-control" row="3" name="content" th:text="${vo.content}"></textarea>
+                <label>내용</label>
+                <textarea class="form-control" rows="10" name="content" th:text="${vo.content}"></textarea>
             </div>
 
             <div class="form-group">
-                <label>Writer</label> <input class="form-control" name="writer" th:value="${vo.writer}" />
+                <label>작성자</label> <input class="form-control" name="writer" th:value="${vo.writer}" />
 
             </div>
-            <button type="submit" class="btn btn-default">Submit Button</button>
-            <button type="reset" class="btn btn-primary">Reset Button</button>
+            <button type="submit" class="btn btn-primary">제출</button>
+            <button type="reset" class="btn btn-default">리셋</button>
 
         </form>
     </div>

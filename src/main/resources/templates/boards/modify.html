@@ -4,26 +4,25 @@
 
 <div layout:fragment="content">
 
-    <div class="panel-heading">View Page</div>
+    <div class="panel-heading">게시물 수정</div>
     <div class="panel-body">
 
         <form id="f1">
             <div class="form-group">
-                <label>Bno</label> <input class="form-control" name="bno" th:value="${vo.bno}" readonly="readonly"/>
+                <label>No</label> <input class="form-control" name="bno" th:value="${vo.bno}" readonly="readonly"/>
             </div>
 
             <div class="form-group">
-                <label>Title</label> <input class="form-control" name="title" th:value="${vo.title}"/>
-                <p class="help-block">Title text here.</p>
+                <label>제목</label> <input class="form-control" name="title" th:value="${vo.title}"/>
             </div>
 
             <div class="form-group">
-                <label>Content</label>
-                <textarea class="form-control" row="3" name="content" th:text="${vo.content}"></textarea>
+                <label>내용</label>
+                <textarea class="form-control" rows="10" name="content" th:text="${vo.content}"></textarea>
             </div>
 
             <div class="form-group">
-                <label>Writer</label> <input class="form-control" name="writer" th:value="${vo.writer}" readonly="readonly"/>
+                <label>작성자</label> <input class="form-control" name="writer" th:value="${vo.writer}" readonly="readonly"/>
             </div>
 
             <input type="hidden" name="page" th:value="${pageVO.page}">
@@ -34,7 +33,7 @@
         </form>
 
         <div class="form-group">
-            <label>RegDate</label> <input class="form-control" name="regDate" th:value="${#dates.format(vo.regdate, 'yyyy-MM-dd')}" readonly="readonly"/>
+            <label>작성 날짜</label> <input class="form-control" name="regDate" th:value="${#dates.format(vo.regdate, 'yyyy-MM-dd')}" readonly="readonly"/>
         </div>
 
         <div class="pull-right">
