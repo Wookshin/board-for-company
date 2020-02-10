@@ -4,7 +4,12 @@
 
 <div layout:fragment="content">
 
-    <div class="panel-heading"></div>
+    <div class="panel-heading">
+        <div class="div_tag" th:each="tag : ${tags}" >
+            <a th:href="${tag}" class="tagLink" th:for="${tag}" th:text="'#'+${tag}">Tag</a>
+        </div>
+    </div>
+
     <div class="panel-body pull-right">
         <h3><a class="label label-primary " th:href="@{register}">등록</a></h3>
     </div>
@@ -121,6 +126,17 @@
 
                 formObj.attr("action", [[@{'/boards/view'}]]);
                 formObj.append("<input type='hidden' name='bno' value='"+boardNo+"'>");
+
+                formObj.submit();
+            });
+            $(".tagLink").click(function(e){
+
+                e.preventDefault();
+
+                var tagName = $(this).attr("href");
+
+                formObj.attr("action", [[@{'/boards/hashtag'}]]);
+                formObj.append("<input type='hidden' name='tagName' value='"+tagName+"'>");
 
                 formObj.submit();
             });

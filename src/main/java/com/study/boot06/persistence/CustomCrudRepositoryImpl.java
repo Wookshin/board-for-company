@@ -23,7 +23,7 @@ public class CustomCrudRepositoryImpl extends QuerydslRepositorySupport implemen
     }
 
     @Override
-    public Page<Object[]> getCustomPage(String type, String keyword, Pageable page){
+    public Page<Object[]> getCustomPage(String type, String keyword, List<Long> bnoList, Pageable page){
 
         log.info("================================");
         log.info("TYPE: "+type);
@@ -50,9 +50,12 @@ public class CustomCrudRepositoryImpl extends QuerydslRepositorySupport implemen
                     break;
                 case "c":
                     tuple.where(b.content.like("%"+keyword+"%"));
+                    break;
                 case "w":
                     tuple.where(b.writer.like("%" + keyword + "%"));
                     break;
+                case "h":
+                    tuple.where(b.bno.in(bnoList));
             }
         }
 

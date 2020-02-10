@@ -11,13 +11,14 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @Table(name="tbl_webboards")
 @EqualsAndHashCode(of="bno")
-@ToString(exclude = "replies")
+@ToString(exclude = {"replies", "hashtags"})
 public class WebBoard {
 
     @Id
@@ -37,4 +38,10 @@ public class WebBoard {
 
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
     private List<WebReply> replies;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "board_hashtag",
+        joinColumns = @JoinColumn(name="bno", referencedColumnName = "bno"),
+        inverseJoinColumns = @JoinColumn(name = "hno", referencedColumnName = "hno"))
+    private Set<WebHashtag> hashtags;
 }

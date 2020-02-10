@@ -50,6 +50,7 @@ hr {
   padding: 0;
 }
 
+
 /*
  * Remove the gap between audio, canvas, iframes,
  * images, videos and the bottom of their containers:
@@ -97,6 +98,14 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+.div_tag{
+  display: inline;
+}
+
+.tagLink{
+  font-size: 25px;
+}
 
 /* ==========================================================================
    Helper classes

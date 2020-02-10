@@ -32,7 +32,7 @@ public class CustomRepositoryTests {
         String type = "t";
         String keyword = "10";
 
-        Page<Object[]> result = repo.getCustomPage(type, keyword, pageable);
+        Page<Object[]> result = repo.getCustomPage(type, keyword, null, pageable);
 
         log.info("" + result);
 
@@ -53,7 +53,7 @@ public class CustomRepositoryTests {
         String type = "w";
         String keyword = "user09";
 
-        Page<Object[]> result = repo.getCustomPage(type, keyword, pageable);
+        Page<Object[]> result = repo.getCustomPage(type, keyword, null, pageable);
 
         log.info("" + result);
         log.info("TOTAL PAGES: " + result.getTotalPages());
