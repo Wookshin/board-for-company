@@ -140,6 +140,13 @@
 
                 formObj.submit();
             });
+             $(".page-header").click(function(e){
+
+                    e.preventDefault();
+
+                    formObj.attr("action", [[@{'/boards/list'}]]);
+                    formObj.submit();
+            });
         });
 
     </script>

@@ -80,8 +80,10 @@ public class WebBoardController {
     }
 
     @GetMapping("/register")
-    public void registerGET(@ModelAttribute("vo") WebBoard vo){
+    public void registerGET(@ModelAttribute("vo") WebBoard vo, Model model){
         log.info("register get");
+        //Hashtag 조회
+        model.addAttribute("tags", hashtagRepository.findAll().stream().map(WebHashtag::getTagName).collect(Collectors.toList()));
     }
 
     @PostMapping("/register")
@@ -140,6 +142,8 @@ public class WebBoardController {
             model.addAttribute("vo", board);
             model.addAttribute("tags", tags);
         });
+
+        model.addAttribute("allTags", hashtagRepository.findAll().stream().map(WebHashtag::getTagName).collect(Collectors.toList()));
     }
 
     @PostMapping("/delete")
